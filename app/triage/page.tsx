@@ -27,66 +27,81 @@ export default function TriagePage() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
-      <div className="absolute inset-0 bg-gradient-to-br from-red-100 to-blue-100 dark:from-red-900 dark:to-blue-900 opacity-20 z-0 transition-colors duration-300"></div>
+    <div className="min-h-screen w-full bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+      <div className="fixed inset-0 w-screen bg-gradient-to-br from-red-100 to-blue-100 dark:from-red-900 dark:to-blue-900 opacity-20 z-0 transition-colors duration-300"></div>
       <div className="relative z-10">
-        {/* Header */}
-        <header className="py-4 px-6 flex justify-between items-center">
-          <Link
-            href="/"
-            className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-red-500 to-blue-500 rounded-full"
-          >
-            <div className="w-6 h-6 bg-gradient-to-br from-white to-white/70 rounded-full shadow-inner"></div>
-            <span className="text-lg font-semibold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-              Hemonculus
-            </span>
+        <header className="pt-4 px-6 flex justify-between items-center relative">
+          <div className="w-12 h-12"></div>
+          <Link href="/" className="flex items-center justify-center absolute left-1/2 -translate-x-1/2 top-20">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="ring-gradient" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor="#ef4444" />
+                  <stop offset="100%" stopColor="#3b82f6" />
+                </linearGradient>
+              </defs>
+              <circle cx="24" cy="24" r="20" stroke="url(#ring-gradient)" strokeWidth="4" fill="none" />
+            </svg>
           </Link>
-          <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="rounded-full">
-            {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-          </Button>
+          <div className="flex items-center space-x-6">
+            <nav className="hidden md:flex items-center space-x-6">
+              <Link href="/triage" className="text-sm hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                Triage
+              </Link>
+              <Link href="/pricing" className="text-sm hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                Pricing
+              </Link>
+              <Link href="/about" className="text-sm hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                About
+              </Link>
+              <Link href="/contact" className="text-sm hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                Contact
+              </Link>
+            </nav>
+            <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="rounded-full">
+              {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </Button>
+          </div>
         </header>
 
-        {/* Main Content */}
-        <main className="container mx-auto px-4 py-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h1 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">
-                Hematology Symptom Checker
-              </h1>
-              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                Get an initial assessment of your symptoms and guidance on next steps.
-              </p>
+        <main className="w-full max-w-7xl mx-auto px-4 py-12 mt-20">
+          <div className="max-w-2xl mx-auto mb-12 text-center">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 pb-3 bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">
+              Symptom Checker
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Get an initial assessment of your symptoms and guidance on next steps.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Note: This is not a replacement for professional medical care.
+            </p>
+          </div>
+
+          {/* Centered Chat Interface */}
+          <div className="max-w-3xl mx-auto mb-12">
+            <div className="bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-xl border border-gray-200 dark:border-gray-800 shadow-lg">
+              <TriageChat />
+            </div>
+          </div>
+
+          {/* Info Cards at Bottom */}
+          <div className="max-w-3xl mx-auto grid gap-4">
+            <div className="rounded-lg border bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm p-4">
+              <h3 className="font-semibold mb-2">Emergency Alert</h3>
               <p className="text-sm text-muted-foreground">
-                Note: This is not a replacement for professional medical care.
+                If you're experiencing a medical emergency, please call 911 or go to the nearest emergency room right
+                away.
               </p>
             </div>
 
-            {/* Chat Interface */}
-            <div className="grid gap-6 md:grid-cols-[2fr,1fr]">
-              <div className="bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-xl border border-gray-200 dark:border-gray-800 shadow-lg">
-                <TriageChat />
-              </div>
-
-              {/* Info Cards */}
-              <div className="space-y-4">
-                <div className="rounded-lg border bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm p-4">
-                  <h3 className="font-semibold mb-2">Emergency Alert</h3>
-                  <p className="text-sm text-muted-foreground">
-                    If you're experiencing a medical emergency, please call 911 or go to the nearest emergency room
-                    right away.
-                  </p>
-                </div>
-
-                <div className="rounded-lg border bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm p-4">
-                  <h3 className="font-semibold mb-2">How to Use</h3>
-                  <ul className="text-sm text-muted-foreground space-y-2">
-                    <li>• Describe your symptoms in detail</li>
-                    <li>• Answer any follow-up questions we ask</li>
-                    <li>• Get personalized guidance for your hematology care</li>
-                    <li>• Follow our recommendations to connect with our experts</li>
-                  </ul>
-                </div>
-              </div>
+            <div className="rounded-lg border bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm p-4">
+              <h3 className="font-semibold mb-2">How to Use</h3>
+              <ul className="text-sm text-muted-foreground space-y-2">
+                <li>• Describe your symptoms in detail</li>
+                <li>• Answer any follow-up questions we ask</li>
+                <li>• Get personalized guidance for your hematology care</li>
+                <li>• Follow our recommendations to connect with our experts</li>
+              </ul>
             </div>
           </div>
         </main>

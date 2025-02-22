@@ -74,23 +74,46 @@ export default function PatientsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
-      <div className="absolute inset-0 bg-gradient-to-br from-red-100 to-blue-100 dark:from-red-900 dark:to-blue-900 opacity-20 z-0 transition-colors duration-300"></div>
+    <div className="min-h-screen w-full bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+      <div className="fixed inset-0 w-screen bg-gradient-to-br from-red-100 to-blue-100 dark:from-red-900 dark:to-blue-900 opacity-20 z-0 transition-colors duration-300"></div>
       <div className="relative z-10">
-        <header className="py-4 px-6 flex justify-between items-center">
-          <Link href="/" className="inline-flex items-center">
-            <div className="inline-flex items-center justify-center w-10 h-10 bg-gradient-to-r from-red-500 to-blue-500 rounded-full">
-              <div className="w-6 h-6 bg-white dark:bg-gray-900 rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_2px_4px_rgba(255,255,255,0.1)] opacity-95"></div>
-            </div>
+        <header className="pt-4 px-6 flex justify-between items-center relative">
+          <div className="w-12 h-12"></div>
+          <Link href="/" className="flex items-center justify-center absolute left-1/2 -translate-x-1/2 top-20">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="ring-gradient" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor="#ef4444" />
+                  <stop offset="100%" stopColor="#3b82f6" />
+                </linearGradient>
+              </defs>
+              <circle cx="24" cy="24" r="20" stroke="url(#ring-gradient)" strokeWidth="4" fill="none" />
+            </svg>
           </Link>
-          <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="rounded-full">
-            {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-          </Button>
+          <div className="flex items-center space-x-6">
+            <nav className="hidden md:flex items-center space-x-6">
+              <Link href="/triage" className="text-sm hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                Triage
+              </Link>
+              <Link href="/pricing" className="text-sm hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                Pricing
+              </Link>
+              <Link href="/about" className="text-sm hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                About
+              </Link>
+              <Link href="/contact" className="text-sm hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                Contact
+              </Link>
+            </nav>
+            <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="rounded-full">
+              {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </Button>
+          </div>
         </header>
 
-        <main className="container mx-auto px-4 py-12">
+        <main className="container mx-auto px-4 py-12 mt-20">
           <div className="max-w-2xl mx-auto mb-12 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">
               Reasons for Consultation
             </h1>
             <p className="text-xl text-muted-foreground">
@@ -102,7 +125,7 @@ export default function PatientsPage() {
             {consultationReasons.map((reason) => (
               <Card
                 key={reason.title}
-                className="group relative overflow-hidden transition-all hover:shadow-lg hover:shadow-red-500/5 dark:hover:shadow-blue-500/5 bg-white dark:bg-gray-900 transition-colors duration-300"
+                className="group relative overflow-hidden transition-all hover:shadow-lg hover:shadow-red-500/5 dark:hover:shadow-blue-500/5 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200/50 dark:border-white/10"
               >
                 <CardHeader className="px-4 py-3">
                   <CardTitle className="text-xl font-semibold text-gray-800 dark:text-gray-200">

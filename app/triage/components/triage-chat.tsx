@@ -78,10 +78,10 @@ export default function TriageChat() {
 
   return (
     <Card className="flex flex-col h-[600px] bg-transparent">
-      <ScrollArea className="flex-1 p-4">
+      <ScrollArea className="flex-1 p-4 scrollable-container">
         <div className="space-y-4">
           {messages.length === 0 && (
-            <div className="text-center text-muted-foreground p-4">How can I help you today?</div>
+            <div className="text-center text-muted-foreground p-4">Describe your symptom in detail</div>
           )}
           {messages.map((message, index) => (
             <div key={index} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
@@ -118,7 +118,7 @@ export default function TriageChat() {
           className="flex gap-2"
         >
           <Input
-            placeholder="Describe your symptoms in detail..."
+            placeholder="How can I help you today?"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             disabled={isLoading}
@@ -130,8 +130,8 @@ export default function TriageChat() {
             className="relative group overflow-hidden rounded-full hover:scale-105 transition-all duration-200"
           >
             <span className="absolute inset-0 bg-gradient-to-r from-red-500 to-blue-500 opacity-90 group-hover:opacity-100 transition-all duration-200"></span>
-            <span className="relative text-white">
-              <Send className="h-4 w-4" />
+            <span className="relative">
+              <Send className="h-4 w-4 text-white" />
             </span>
           </Button>
         </form>

@@ -26,10 +26,10 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
-      <div className="absolute inset-0 bg-gradient-to-br from-red-100 to-blue-100 dark:from-red-900 dark:to-blue-900 opacity-20 z-0 transition-colors duration-300"></div>
+    <div className="min-h-screen w-full bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+      <div className="fixed inset-0 w-screen bg-gradient-to-br from-red-100 to-blue-100 dark:from-red-900 dark:to-blue-900 opacity-20 z-0 transition-colors duration-300"></div>
       <div className="relative z-10">
-        <header className="py-4 px-6 flex justify-between items-center">
+        <header className="pt-4 px-6 flex justify-between items-center">
           <Link
             href="/"
             className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-red-500 to-blue-500 rounded-full"
@@ -39,27 +39,29 @@ export default function LandingPage() {
               Hemonculus
             </span>
           </Link>
-          <nav className="hidden md:flex space-x-6">
-            <Link href="/triage" className="hover:text-red-600 transition-colors">
-              Triage
-            </Link>
-            <Link href="/pricing" className="hover:text-red-600 transition-colors">
-              Pricing
-            </Link>
-            <Link href="/about" className="hover:text-red-600 transition-colors">
-              About
-            </Link>
-            <a href="#contact" className="hover:text-red-600 transition-colors">
-              Contact
-            </a>
+          <div className="flex items-center space-x-6">
+            <nav className="hidden md:flex items-center space-x-6">
+              <Link href="/triage" className="text-sm hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                Triage
+              </Link>
+              <Link href="/pricing" className="text-sm hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                Pricing
+              </Link>
+              <Link href="/about" className="text-sm hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                About
+              </Link>
+              <Link href="/contact" className="text-sm hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                Contact
+              </Link>
+            </nav>
             <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="rounded-full">
               {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
-          </nav>
+          </div>
         </header>
 
         <main className="container mx-auto px-6 py-12 flex flex-col items-center justify-center min-h-[calc(100vh-80px)]">
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 pb-2 text-center bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl font-bold mb-8 pb-3 text-center bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">
             Hematology care, reimagined
           </h1>
           <p className="text-xl mb-12 max-w-2xl text-center">

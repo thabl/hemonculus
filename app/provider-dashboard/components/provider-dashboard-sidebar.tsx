@@ -20,15 +20,36 @@ export function ProviderDashboardSidebar() {
 
   return (
     <div
-      className={`flex flex-col h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 ${isCollapsed ? "w-16" : "w-64"}`}
+      className={`flex flex-col h-screen bg-white dark:bg-[#1a1625]/50 dark:backdrop-blur-sm border-r border-gray-200 dark:border-white/10 transition-all duration-300 ${
+        isCollapsed ? "w-16" : "w-64"
+      }`}
     >
-      <div className="relative h-[72px] border-b border-gray-200 dark:border-gray-700">
+      <div className="relative h-40 flex items-center justify-center pt-12">
         <div className="absolute inset-0 flex justify-center items-center">
           {!isCollapsed && (
-            <Link href="/" className="flex justify-center items-center">
-              <div className="inline-flex items-center justify-center w-10 h-10 bg-gradient-to-r from-red-500 to-blue-500 rounded-full">
-                <div className="w-6 h-6 bg-white dark:bg-gray-800 rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_2px_4px_rgba(255,255,255,0.03)] opacity-95"></div>
-              </div>
+            <Link href="/" className="flex items-center justify-center mt-12">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="ring-gradient" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#ef4444" />
+                    <stop offset="100%" stopColor="#3b82f6" />
+                  </linearGradient>
+                </defs>
+                <circle cx="24" cy="24" r="20" stroke="url(#ring-gradient)" strokeWidth="4" fill="none" />
+              </svg>
+            </Link>
+          )}
+          {isCollapsed && (
+            <Link href="/" className="flex items-center justify-center scale-75 mt-12">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="ring-gradient-collapsed" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#ef4444" />
+                    <stop offset="100%" stopColor="#3b82f6" />
+                  </linearGradient>
+                </defs>
+                <circle cx="24" cy="24" r="20" stroke="url(#ring-gradient-collapsed)" strokeWidth="4" fill="none" />
+              </svg>
             </Link>
           )}
         </div>
@@ -36,18 +57,20 @@ export function ProviderDashboardSidebar() {
           variant="ghost"
           size="icon"
           onClick={toggleSidebar}
-          className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full flex-shrink-0"
+          className="absolute right-2 top-6 rounded-full flex-shrink-0 dark:text-[#f8f9fa]"
         >
           {isCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
         </Button>
       </div>
 
-      <nav className="flex-1 overflow-y-auto py-4">
+      <nav className="flex-1 overflow-y-auto py-6 mt-2">
         {menuItems.map((item) => (
           <Link
             key={item.label}
             href={item.href}
-            className={`flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${isCollapsed ? "justify-center" : ""}`}
+            className={`flex items-center px-4 py-2.5 text-gray-700 dark:text-[#f8f9fa] hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${
+              isCollapsed ? "justify-center" : ""
+            }`}
           >
             <item.icon className={`h-5 w-5 ${isCollapsed ? "" : "mr-3"}`} />
             {!isCollapsed && <span>{item.label}</span>}
@@ -56,8 +79,11 @@ export function ProviderDashboardSidebar() {
       </nav>
 
       {!isCollapsed && (
-        <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-          <Button variant="outline" className="w-full">
+        <div className="p-4 border-t border-gray-200 dark:border-white/10">
+          <Button
+            variant="outline"
+            className="w-full bg-transparent text-gray-700 dark:text-[#f8f9fa] border-gray-300 dark:border-white/20 hover:bg-gray-100/10 dark:hover:bg-white/5"
+          >
             Log Out
           </Button>
         </div>
