@@ -46,9 +46,9 @@ export default function LandingPage() {
             <Link href="/pricing" className="hover:text-red-600 transition-colors">
               Pricing
             </Link>
-            <a href="#about" className="hover:text-red-600 transition-colors">
+            <Link href="/about" className="hover:text-red-600 transition-colors">
               About
-            </a>
+            </Link>
             <a href="#contact" className="hover:text-red-600 transition-colors">
               Contact
             </a>
